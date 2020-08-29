@@ -27,9 +27,8 @@ export function applyAuthorization(inOptions: GotOptions): GotOptions {
           );
         }
       }
-    } else if (options.hostType === PLATFORM_TYPE_GITLAB) {
-      options.headers['Private-token'] = options.token;
     } else {
+      // For GitLab the bearer token can be a Personal Access Token or an OAuth2 token.
       options.headers.authorization = `Bearer ${options.token}`;
     }
     delete options.token;
